@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.*;
 
-public class Page121 { // 잘 이해가 안가니 다시 해보기.
+public class Page121 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -18,45 +18,46 @@ public class Page121 { // 잘 이해가 안가니 다시 해보기.
         System.out.println(A[K - 1]);
     }
 
-    public static void sort(int[] A, int start, int end, int k) {
-        if (start < end) {
-            int pivot = partition(A, start, end);
+    public static void sort(int[] A, int s, int e, int k) {
+        if (s < e) {
+            int pivot = partition(A, s, e);
             if (pivot == k) {
                 return;
-            } else if (k < pivot) {
-                sort(A, start, pivot - 1, k);
+            } else if (pivot > k) {
+                sort(A, s, pivot - 1, k);
             } else {
-                sort(A, pivot + 1, end, k);
+                sort(A, s + 1, pivot, k);
             }
         }
+
     }
 
-    public static int partition(int[] A, int start, int end) {
-        if (start + 1 == end) {
-            if (A[start] > A[end]) {
-                swap(A, start, end);
+    public static int partition(int[] A, int s, int e) {
+        if (s + 1 == e) {
+            if (A[s] > A[e]) {
+                swap(A, s, e);
             }
-            return end;
+            return e;
         }
 
-        int m = (start + end) / 2;
-        swap(A, start, m);
-        int pivot = A[start];
-        int i = start + 1;
-        int j = end;
+        int M = (s + e) / 2;
+        swap(A, s, M);
+        int pivot = A[s];
+        int i = s + 1;
+        int j = e;
         while (i <= j) {
-            while (j >= start + 1 && pivot < A[j]) {
+            while (j >= s + 1 && pivot < A[j]) {
                 j--;
             }
-            while (i <= end && pivot > A[i]) {
+            while (i <= e && pivot > A[i]) {
                 i++;
             }
+
             if (i <= j) {
                 swap(A, i++, j--);
             }
         }
-
-        A[start] = A[j];
+        A[s] = A[j];
         A[j] = pivot;
         return j;
     }
