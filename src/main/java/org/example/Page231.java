@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.*;
 
-public class Page231 {
+public class Page231 { // 타입 문제 및 시간 문제가 발생
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
